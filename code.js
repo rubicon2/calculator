@@ -22,8 +22,16 @@ const divide = function(a, b) {
     return a / b;
 }
 
+const modulus = function(a, b) {
+    return a % b;
+}
+
 const clear = function() {
 
+}
+
+const displayOutput = function(output) {
+    resultDisplay.textContent = output;
 }
 
 const toggleNegativeInput = function() {
