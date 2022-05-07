@@ -26,11 +26,7 @@ const clear = function() {
 
 }
 
-const toggleNegative = function() {
-
-}
-
-const modulus = function() {
+const toggleNegativeInput = function() {
 
 }
 
