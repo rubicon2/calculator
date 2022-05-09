@@ -52,8 +52,13 @@ body {
     font-size: 25px;
     border: none;
     border-radius: 50px;
-    transition-duration: 0.4s;
+    transition-duration: 0.1s;
     background-color: #C0C0C0;
+}
+
+.button:hover {
+    background-color: #a3a0a0;
+    color: white;
 }
 
 .half-width {
