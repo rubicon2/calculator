@@ -9,44 +9,8 @@
     </head>
     <body>
         <div class="calc-body">
-            <div id="calc-result">
-                <div>0</div>
-            </div>
-            <div class="flex-row">
-                <div class="flex-column calc-pad">
-                    <div class="flex-row">
-                        <div class="calc-key" onclick="clearData()">AC</div>
-                        <div class="calc-key" onclick="toggleNegativeInput()">+/-</div>
-                        <div class="calc-key" onclick="setOperator('MODULUS')">%</div>
-                    </div>
-                    <div class="flex-row">
-                        <div class="calc-key" onclick="numericInput(7)">7</div>
-                        <div class="calc-key" onclick="numericInput(8)">8</div>
-                        <div class="calc-key" onclick="numericInput(9)">9</div>
-                    </div>
-                    <div class="flex-row">
-                        <div class="calc-key" onclick="numericInput(4)">4</div>
-                        <div class="calc-key" onclick="numericInput(5)">5</div>
-                        <div class="calc-key" onclick="numericInput(6)">6</div>
-                    </div>
-                    <div class="flex-row">
-                        <div class="calc-key" onclick="numericInput(1)">1</div>
-                        <div class="calc-key" onclick="numericInput(2)">2</div>
-                        <div class="calc-key" onclick="numericInput(3)">3</div>
-                    </div>
-                    <div class="flex-row">
-                        <div class="calc-key half-width" onclick="numericInput(0)">0</div>
-                        <div class="calc-key half-width" onclick="numericInput('.')">DOT</div>
-                    </div>
-                </div>
-                <div class="flex-column calc-operators">
-                    <div class="calc-key" onclick="setOperator('DIVIDE')">/</div>
-                    <div class="calc-key" onclick="setOperator('MULTIPLY')">*</div>
-                    <div class="calc-key" onclick="setOperator('SUBTRACT')">-</div>
-                    <div class="calc-key" onclick="setOperator('ADD')">+</div>
-                    <div class="calc-key" onclick="calculate()">=</div>
-                </div>   
-            </div>
+            <div id="calc-result"></div>
+            <div class="flex-row"></div>
         </div>
     </body>
 </html>
