@@ -9,11 +9,13 @@
     </head>
     <body>
         <div class="calc-body">
-            <div id="calc-result"></div>
+            <div id="calc-result">
+                <div>0</div>
+            </div>
             <div class="flex-row">
                 <div class="flex-column calc-pad">
                     <div class="flex-row">
-                        <div class="calc-key" onclick="clear()">AC</div>
+                        <div class="calc-key" onclick="clearData()">AC</div>
                         <div class="calc-key" onclick="toggleNegativeInput()">+/-</div>
                         <div class="calc-key" onclick="setOperator('MODULUS')">%</div>
                     </div>
