@@ -83,6 +83,6 @@ body {
     background-color: #871911;
 }
 
-.button:active, .numpad.active, .operator.active {
+.button:active {
     background-color: black;
 }
