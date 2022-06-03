@@ -86,3 +86,7 @@ body {
 .button:active {
     background-color: black;
 }
+
+.operator.selected {
+    background-color: orange;
+}

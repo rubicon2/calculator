@@ -1,10 +1,16 @@
 const resultDisplay = document.querySelector("#display div");
+const operatorKeys = document.querySelectorAll(".operator:not(.equals)");
+const addKey = document.querySelector(".add");
+const subtractKey = document.querySelector(".subtract");
+const multiplyKey = document.querySelector(".multiply");
+const divideKey = document.querySelector(".divide");
 // TBC regex. 
 const regex = /^(?=.{1,10}$)-?\d+(\d$|[.]?\d*$)/;
 
 let inputString = "";
 let currentOperator = null;
 let previousOperator = null;
+let currentOperatorKey = null;
 // When ready, the input string will be converted into operands of type number. 
 let operandA = 0;
 let operandB = 0;
@@ -19,6 +25,7 @@ const clearData = function() {
     currentOperator = null;
     lastOperator = null;
     isBackspaceEnabled = true;
+    clearSelectedOperatorKey();
     displayOutput("0");
 }
 
@@ -56,7 +63,7 @@ const numericInput = function(s) {
     displayOutput(inputString);
 }
 
-const setOperator = function(operator) {
+const setOperator = function(e) {
     if (operandA === 0) {
         operandA = inputString * 1;
         inputString = "";
@@ -65,18 +72,26 @@ const setOperator = function(operator) {
         equals();
         operandB = 0;
     }
-    currentOperator = operator;
+    currentOperator = e.currentTarget.textContent;
+    if (currentOperatorKey != e.currentTarget && currentOperatorKey != null)
+        clearSelectedOperatorKey();
+    e.currentTarget.classList.add("selected");
+    currentOperatorKey = e.currentTarget;
+}
+
+const clearSelectedOperatorKey = function() {
+    currentOperatorKey.classList.remove("selected");
 }
 
 const calculate = function(operator, a, b) {
     switch(operator) {
-        case "ADD":
+        case "+":
             return a += b;
-        case "SUBTRACT":
+        case "-":
             return a -= b;
-        case "MULTIPLY":
+        case "*":
             return a *= b;
-        case "DIVIDE":
+        case "/":
             return a /= b;
     }
 }
@@ -97,3 +112,8 @@ const equals = function() {
     inputString = ""; 
     displayOutput(operandA);
 }
+
+addKey.addEventListener("click", setOperator);
+subtractKey.addEventListener("click", setOperator);
+multiplyKey.addEventListener("click", setOperator);
+divideKey.addEventListener("click", setOperator);
