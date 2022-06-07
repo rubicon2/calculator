@@ -5,7 +5,8 @@ const subtractKey = document.querySelector(".subtract");
 const multiplyKey = document.querySelector(".multiply");
 const divideKey = document.querySelector(".divide");
 // TBC regex. 
-const regex = /^(?=.{1,10}$)-?\d+(\d$|[.]?\d*$)/;
+const regex = /^(?=.{1,7}$)-?\d+(\d$|[.]?\d*$)/;
+const displayLength = 7;
 
 let inputString = "";
 let currentOperator = null;
@@ -73,14 +74,17 @@ const setOperator = function(e) {
         operandB = 0;
     }
     currentOperator = e.currentTarget.textContent;
-    if (currentOperatorKey != e.currentTarget && currentOperatorKey != null)
+    if (currentOperatorKey != e.currentTarget)
         clearSelectedOperatorKey();
     e.currentTarget.classList.add("selected");
     currentOperatorKey = e.currentTarget;
 }
 
 const clearSelectedOperatorKey = function() {
-    currentOperatorKey.classList.remove("selected");
+    if (currentOperatorKey != null) {
+        currentOperatorKey.classList.remove("selected");
+        currentOperatorKey = null;
+    }
 }
 
 const calculate = function(operator, a, b) {
@@ -92,17 +96,21 @@ const calculate = function(operator, a, b) {
         case "*":
             return a *= b;
         case "/":
-            return a /= b;
+            if (b === 0) {
+                return("don't...");
+            } else
+                return a /= b;
     }
 }
 
 const equals = function() {
     operandB = inputString * 1;
-    if (operandB != 0 && currentOperator != null) {
+    if (currentOperator != null) {
         operandA = calculate(currentOperator, operandA, operandB);
         previousOperator = currentOperator;
         previousOperandB = operandB;
         currentOperator = null;
+        clearSelectedOperatorKey();
     }
     else if (previousOperator != null) {
         operandA = calculate(previousOperator, operandA, previousOperandB);
@@ -113,6 +121,8 @@ const equals = function() {
     displayOutput(operandA);
 }
 
+// Using event listeners instead of inline html functions as these give access to the element that triggered the event.
+// So we can change the class of the element that has the event listener attached. 
 addKey.addEventListener("click", setOperator);
 subtractKey.addEventListener("click", setOperator);
 multiplyKey.addEventListener("click", setOperator);
