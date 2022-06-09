@@ -135,9 +135,50 @@ const equals = function() {
     displayOutput(fitOutputToDisplayLength(operandA, displayLength));
 }
 
+const handleKeyboardInput = function(e) {
+    let key = e.key
+    switch(key) {
+        case "+":
+            addKey.click();
+            break;
+        case "-":
+            subtractKey.click();
+            break;
+        case "*":
+            multiplyKey.click();
+            break;
+        case "/":
+        case "\\":
+            divideKey.click();
+            break;
+        case "§":
+            toggleNegativeInput();
+            break;
+        case "Backspace":
+            backspace();
+            break;
+        case "Enter":
+            equals();
+            break;
+        case "Escape":
+        case "c":
+        case "C":
+            clearData();
+            break;
+        default:
+            console.log(key);
+            // Just checking that parseInt(key) != "NaN" didn't work (???)
+            if (key === "." || Number.isInteger(parseInt(key))) {
+                numericInput(key);
+            }
+    }
+}
+
 // Using event listeners instead of inline html functions as these give access to the element that triggered the event.
 // So we can change the class of the element that has the event listener attached. 
 addKey.addEventListener("click", setOperator);
 subtractKey.addEventListener("click", setOperator);
 multiplyKey.addEventListener("click", setOperator);
 divideKey.addEventListener("click", setOperator);
+
+window.addEventListener("keydown", handleKeyboardInput);
