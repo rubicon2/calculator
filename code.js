@@ -30,6 +30,20 @@ const clearData = function() {
     displayOutput("0");
 }
 
+const fitOutputToDisplayLength = function(number, maxLength) {
+    let str = number.toString().toLowerCase();
+    if (str.length <= maxLength)
+        return str;
+    else {
+        str = (str * 1).toExponential(1);
+        if (str.length > maxLength) {
+            console.error(`Result string too long to fit in display: ${str}`);
+            return "ERROR";
+        }
+        return str;
+    }
+}
+
 const displayOutput = function(output) {
     resultDisplay.textContent = output;
 }
@@ -118,7 +132,7 @@ const equals = function() {
     // Disable backspace so user cannot delete digits of result. Will be enabled when user starts entering a new operand.
     isBackspaceEnabled = false;
     inputString = ""; 
-    displayOutput(operandA);
+    displayOutput(fitOutputToDisplayLength(operandA, displayLength));
 }
 
 // Using event listeners instead of inline html functions as these give access to the element that triggered the event.
